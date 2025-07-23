@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Hermosa</title>
+    <style>
+    
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.8;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.3), transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            animation: backgroundShift 8s ease-in-out infinite alternate;
+        }
+        
+        @keyframes backgroundShift {
+            0% {
+                background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%;
+            }
+            100% {
+                background-position: 100% 100%, 0% 0%, 50% 0%, 100% 50%;
+            }
+        }
+        
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        .particle:nth-child(odd) {
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,182,193,0.4) 100%);
+            box-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+        
+        .particle:nth-child(even) {
+            background: radial-gradient(circle, rgba(255,105,180,0.6) 0%, rgba(138,43,226,0.3) 100%);
+            box-shadow: 0 0 15px rgba(255,105,180,0.5);
+        }
+        
+        /* Add sparkles */
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s ease-in-out infinite alternate;
+        }
+        
+        
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.8) rotate(360deg);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .letter-container {
+            background: 
+                linear-gradient(45deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%),
+                radial-gradient(circle at top left, rgba(255,182,193,0.1), transparent 50%),
+                radial-gradient(circle at bottom right, rgba(138,43,226,0.1), transparent 50%);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.3),
+                0 10px 30px rgba(255,105,180,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            padding: 4rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease-out, containerFloat 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        
+        @keyframes containerFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(0.5deg);
+            }
+        }
+        
+        .letter-container::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 8s ease-in-out infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+            50% {
+                transform: translateX(100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(-100%) rotate(45deg);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #ff6b9d, #c471ed);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: rainbowShift 4s ease-in-out infinite, titleBounce 2s ease-in-out infinite alternate;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        @keyframes rainbowShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        @keyframes titleBounce {
+            0% {
+                transform: translateY(0px) scale(1);
+            }
+            100% {
+                transform: translateY(-5px) scale(1.05);
+            }
+        }
+        
+        .title::before {
+            content: '✨';
+            position: absolute;
+            left: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: sparkleRotate 3s linear infinite;
+        }
+        
+        .title::after {
+            content: '✨';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: sparkleRotate 3s linear infinite reverse;
+        }
+        
+        @keyframes sparkleRotate {
+            0% {
+                transform: translateY(-50%) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) rotate(180deg) scale(1.3);
+            }
+            100% {
+                transform: translateY(-50%) rotate(360deg) scale(1);
+            }
+        }
+        
+        .subtitle {
+            font-style: italic;
+            color: #666;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+        
+        .heart {
+            color: #e91e63;
+            font-size: 2.5rem;
+            animation: heartBeat 1.5s ease-in-out infinite, colorChange 3s ease-in-out infinite alternate;
+            margin: 0 1rem;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.5));
+        }
+        
+        @keyframes heartBeat {
+            0%, 50%, 100% {
+                transform: scale(1);
+            }
+            25%, 75% {
+                transform: scale(1.3);
+            }
+        }
+        
+        @keyframes colorChange {
+            0% {
+                color: #e91e63;
+                filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.7));
+            }
+            50% {
+                color: #ff6b9d;
+                filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.8));
+            }
+            100% {
+                color: #c471ed;
+                filter: drop-shadow(0 0 12px rgba(196, 113, 237, 0.7));
+            }
+        }
+        
+        .letter-content {
+            color: #333;
+            font-size: 1.1rem;
+            text-align: justify;
+            line-height: 1.9;
+        }
+        
+        .letter-content p {
+            margin-bottom: 2.5rem;
+            position: relative;
+            animation: slideIn 0.8s ease-out forwards;
+            opacity: 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+            border-left: 4px solid transparent;
+            border-image: linear-gradient(45deg, #667eea, #764ba2, #f093fb) 1;
+            border-radius: 0 15px 15px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .letter-content p:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 100%);
+        }
+        
+        .letter-content p::before {
+            content: '🌸';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            animation: petalFloat 4s ease-in-out infinite;
+        }
+        
+        .letter-content p:nth-child(even)::before {
+            content: '💝';
+        }
+        
+        .letter-content p:nth-child(3n)::before {
+            content: '🌹';
+        }
+        
+        @keyframes petalFloat {
+            0%, 100% {
+                transform: translateY(-50%) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-60%) rotate(10deg);
+            }
+        }
+        .letter-content p {
+          animation: slideIn 0.8s ease-out forwards;
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        
+        .letter-content p:nth-child(1) { animation-delay: 0.2s; }
+        .letter-content p:nth-child(2) { animation-delay: 0.4s; }
+        .letter-content p:nth-child(3) { animation-delay: 0.6s; }
+        .letter-content p:nth-child(1) { animation-delay: 0.2s; }
+        .letter-content p:nth-child(2) { animation-delay: 0.4s; }
+        .letter-content p:nth-child(3) { animation-delay: 0.6s; }
+        .letter-content p:nth-child(4) { animation-delay: 0.8s; }
+        .letter-content p:nth-child(5) { animation-delay: 1.0s; }
+        .letter-content p:nth-child(6) { animation-delay: 1.2s; }
+        .letter-content p:nth-child(7) { animation-delay: 1.4s; }
+        .letter-content p:nth-child(8) { animation-delay: 1.6s; }
+        .letter-content p:nth-child(9) { animation-delay: 1.8s; }
+        .letter-content p:nth-child(10) { animation-delay: 2.0s; }
+        .letter-content p:nth-child(11) { animation-delay: 2.2s; }
+        .letter-content p:nth-child(12) { animation-delay: 2.4s; }
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateX(-30px); }
+          to { opacity: 1; transform: translateX(0); }
+        }   
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .signature {
+            text-align: right;
+            margin-top: 3rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #764ba2;
+            font-weight: 600;
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,182,193,0.9) 100%);
+            backdrop-filter: blur(15px);
+            border-radius: 60px;
+            padding: 18px 25px;
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.2),
+                0 5px 20px rgba(255,105,180,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            animation: musicFloat 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes musicFloat {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), 0 5px 20px rgba(255,105,180,0.3);
+            }
+            100% {
+                transform: translateY(-8px) rotate(1deg);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(255,105,180,0.5);
+            }
+        }
+        
+        .music-control:hover {
+            transform: translateY(-12px) scale(1.1);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 10px 40px rgba(255,105,180,0.6);
+            background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(255,182,193,1) 100%);
+        }
+        
+        .music-control::before {
+            content: '♫';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: #ff6b9d;
+            animation: musicNoteFloat 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes musicNoteFloat {
+            0% {
+                opacity: 0.5;
+                transform: translateX(-50%) translateY(0px) rotate(-5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-10px) rotate(5deg);
+            }
+        }
+        
+        .music-icon {
+            width: 20px;
+            height: 20px;
+            fill: #764ba2;
+        }
+        
+        .music-text {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .letter-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem 0;
+                border-radius: 20px;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .letter-content {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+            
+            .signature {
+                font-size: 1.5rem;
+            }
+            
+            .music-control {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 15px;
+            }
+            
+            .music-text {
+                font-size: 0.8rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .letter-container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .letter-content {
+                font-size: 0.95rem;
+            }
+            
+            .music-control {
+                padding: 10px 12px;
+            }
+        }
+        
+        /* Decorative elements */
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            border-radius: 27px;
+            z-index: -1;
+            animation: borderGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated particles background -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <div class="letter-container">
+            <div class="header">
+                <h1 class="title">Para Mi Hermosa</h1>
+                <p class="subtitle">Una carta escrita con el corazón <span class="heart">♥</span></p>
+            </div>
+            
+            <div class="letter-content">
+                <p>Hola, mi preciosa Hermosa,</p>
+                
+                <p>Hoy quiero regalarte estas palabras que brotan directamente de mi corazón, porque mereces saber —y recordar siempre— lo mucho que significas para mí. "Hermosa" no es solo un apodo; es la evidencia de que, desde que llegaste a mi vida, transformaste todo a tu alrededor con tu luz. Eres esa belleza única que nunca se desvanece, un tesoro que atesoro cada segundo.</p>
+                
+                <p>Adoro tu sentido del humor, esa chispa que hace que hasta los días más grises se llenen de risas espontáneas. Me encanta cómo tus gustos —desde la música que tarareas hasta los juegos que te apasionan— encajan conmigo de una forma casi mágica, como si nos conociéramos desde siempre. Puede que no encuentre las palabras perfectas para describir lo especial que eres, pero cada sonrisa tuya, cada ocurrencia y cada pequeña excentricidad tuya me recuerdan la suerte que tengo de compartir mi camino contigo.</p>
+                
+                <p>Recuerdo con cariño aquella tarde en la que te sorprendí con Stardew Valley solo para jugar juntos. Ver tu emoción al descubrir cada rincón de esa granja virtual, construir sueños en pixel art y reírnos de nuestros tropiezos en Roblox fue uno de esos momentos que guardo con celo. Y aunque hoy nuestro "meta" gamer sea Valorant, mi ilusión es seguir ampliando nuestro repertorio de aventuras: quiero explorar nuevos mundos contigo, ya sea en la pantalla o fuera de ella.</p>
+                
+                <p>Sé que a veces necesitas tu espacio y prefieres estar un rato sola. Respeto y entiendo tu necesidad de silencio, pero si alguna vez sientes el peso de la soledad, permíteme sorprenderte con un detalle. Quizá un mensaje inesperado, una canción que te haga vibrar o un pequeño obsequio que te recuerde lo mucho que me importas. Me parte el corazón imaginar tus lágrimas, y haré lo que esté en mi mano para secarlas y convertirlas en sonrisas.</p>
+                
+                <p>Me preocupa profundamente verte triste, porque tu alegría es ese faro que ilumina no solo tus días, sino también los míos. Cuando te veo reír, siento que el mundo entero reluce más fuerte; por eso mi deseo más grande es ayudarte a volver a esa felicidad que te define. Permíteme ser tu cómplice para fabricar nuevos recuerdos felices, para compartir confidencias y para recordarte, siempre, que en ti reside una fuerza y una belleza incomparables.</p>
+                
+                <p>Tú eres mi persona favorita en el mundo. No solo por tu risa, ni solo por tu compañía en las partidas de juego, sino por la forma en que llenas de sentido cada instante a tu lado. Gracias por ser quien eres: auténtica, divertida, sensible y extraordinaria. Hoy, mañana y siempre, quiero ser yo quien te anime, te apoye y te quiera con toda la devoción que mereces.</p>
+                
+                <p>Sonríe, mi hermosa. Que tu risa sea el himno que nos guíe hacia días mejores. Yo estaré aquí, celebrando cada carcajada tuya y dispuesto a crear juntos nuevas historias que atesorar.</p>
+                
+                <p>Desde la primera vez que me contaste tu sueño de convertirte en creadora de contenido, supe que tu pasión no tenía límites. Admiro cómo te esfuerzas cada día por aprender, probar cosas nuevas y compartir tu voz única con el mundo. Yo estaré a tu lado en cada paso de ese camino: celebrando tus primeros seguidores, animándote cuando te sientas insegura y aplaudiendo cada video que subas. Tu determinación me inspira a perseguir mis propias metas con la misma valentía.</p>
+                
+                <p>Me inspiras cada mañana con esa actitud de mejora constante. Recuerdo cuando, sin pensarlo dos veces, cambiaste tu rutina de entrenamiento para centrarte en fortalecer piernas, ¡y en tu primer día te lanzaste con toda la energía! Esa espontaneidad y ganas de superarte me muestran lo valiente y comprometida que eres. Gracias a ti he aprendido a no temer los retos y a celebrar cada pequeño logro.</p>
+                
+                <p>Tu voz —dulce, cálida y llena de vida— es como un bálsamo para mi alma. Cada vez que me hablas, siento esa chispa de carisma que te caracteriza: tu sonrisa al contarme una anécdota, ese tono juguetón cuando me gastas una broma… Son esos detalles los que convierten lo ordinario en momentos inolvidables. No dejo de maravillarme de lo mucho que me sorprendes y de lo afortunado que soy de tener tu apoyo incondicional.</p>
+                
+                <p>Por eso hoy te hago esta promesa sincera: prometo ser mejor persona junto a ti. Quiero crecer a tu lado, aprendiendo de tu fuerza y de tu ternura, siendo tu apoyo incondicional y tu compañero de aventuras en cada sueño que decidas perseguir.</p>
+                
+                <p>Gracias por ser mi inspiración y mi refugio. Gracias por cada sonrisa, cada palabra y cada gesto de cariño. Eres la luz que transforma mis días, y espero seguir celebrando la magia de tu ser en cada instante.</p>
+            </div>
+            
+            <div class="signature">
+                Con todo mi amor y admiración,<br>
+                Greto
+            </div>
+        </div>
+    </div>
+    
+    <!-- Music control -->
+    <div class="music-control" id="musicControl">
+        <svg class="music-icon" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <span class="music-text">♪ Música</span>
+    </div>
+    
+    <!-- Music link -->
+    <div id="youtube-container" style="position: fixed; bottom: 80px; right: 30px; width: 280px; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: none; z-index: 999; text-align: center;">
+        <p style="margin-bottom: 15px; color: #333; font-weight: 600;">🎵 Música de fondo</p>
+        <a href="https://youtu.be/M-Vus7kqy1o?si=sVtelOmF86P_lHuM" target="_blank" 
+           style="display: inline-block; background: linear-gradient(45deg, #667eea, #764ba2); color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 500; transition: transform 0.2s;">
+           ▶️ Reproducir en YouTube
+        </a>
+    </div>
+    
+   <div class="music-control" id="musicControl">
+        <svg class="music-icon" viewBox="0 0 24 24">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+        <span class="music-text">♪ Música</span>
+    </div>
+    <div id="youtube-container" style="position: fixed; bottom: 80px; right: 30px; width: 280px; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: none; z-index: 999; text-align: center;">
+        <p style="margin-bottom: 10px; color: #333; font-weight: 600;">🎵 Música de fondo</p>
+        <div id="youtube-player" style="display: none;"></div>
+    </div>
+
+    <!-- Carga la API de YouTube -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        // [Tu código existente para partículas y animaciones permanece igual]
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                const delay = Math.random() * 20;
+                const duration = Math.random() * 10 + 15;
+                const leftPos = Math.random() * 100;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = leftPos + '%';
+                particle.style.animationDelay = delay + 's';
+                particle.style.animationDuration = duration + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Reproductor de YouTube
+        let player;
+        let isPlayerReady = false;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                videoId: 'M-Vus7kqy1o',
+                playerVars: {
+                    'autoplay': 1,       // Reproducción automática
+                    'controls': 0,       // Ocultar controles de YouTube
+                    'showinfo': 0,       // Ocultar información del video
+                    'rel': 0,            // Ocultar videos relacionados
+                    'loop': 1,           // Repetir la playlist
+                    'playlist': 'XHjxj78AYc0' // ID de tu playlist
+                },  
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            isPlayerReady = true;
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+                player.seekTo(0);
+                player.playVideo();
+            }
+        }
+
+        // Control de música
+        const musicControl = document.getElementById('musicControl');
+        const youtubeContainer = document.getElementById('youtube-container');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        let isVisible = false;
+
+        playBtn.addEventListener('click', () => {
+          if (isPlayerReady) {
+              player.playVideo();
+              player.mute(); // Opcional: silencia el audio al inicio
+          }
+        pauseBtn.addEventListener('click', () => {
+            if (isPlayerReady) player.pauseVideo();
+        });
+
+        // Inicialización
+        window.addEventListener('load', () => {
+            createParticles();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const letters = document.querySelectorAll('.letter-content p');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            });
+            letters.forEach(letter => {
+                observer.observe(letter);
+            });
+        });
+    </script>
+<!-- Confeti al hacer clic -->
+<canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  document.addEventListener('click', () => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  });
+</script>
+<style>
+  .star-trail {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #fff, #ff6b9d);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    animation: starTrail 1.5s ease-out forwards;
+  }
+
+  @keyframes starTrail {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    100% { transform: translate(-50%, -100px) scale(0.5); opacity: 0; }
+  }
+</style>
+<script>
+  // Estrellas que siguen el cursor
+  document.addEventListener('mousemove', (e) => {
+    const star = document.createElement('div');
+    star.className = 'star-trail';
+    star.style.left = e.clientX + 'px';
+    star.style.top = e.clientY + 'px';
+    document.body.appendChild(star);
+    
+    setTimeout(() => star.remove(), 1500);
+  });
+</script>
+<div id="finalMessage" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #ff6b9d; color: white; padding: 15px 30px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: none;">🎁 ¡Gracias por ser tú! 💖</div>
+
+</body>
+</html>
